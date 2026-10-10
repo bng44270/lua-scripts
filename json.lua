@@ -1,3 +1,21 @@
+--*******************************
+-- Simplified JSON library
+-- based on Python json library and powered by dkjson
+--
+-- Usage:
+--          local json = require("json")
+--
+--          local dict = json.loads("JSON-STRING")
+--
+--          local person = { name = "Jim", age = 53 }
+--          local jstr = json.dumps(person)
+--
+--          local dict = json.load("/path/to/file.json")
+--
+--          local person = { name = "Jim", age = 53 }
+--          local jstr = json.dumps(person,"/path/to/new.json")
+--*******************************
+
 local json = require("dkjson")
 local M = {}
 
