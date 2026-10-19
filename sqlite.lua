@@ -34,14 +34,14 @@
 --**********************************
 
 local M = {}
-local M_DBFULE = ""
+local M_DBFILE = ""
 local M_TABLES = {}
 
 M._runsql = function(sql,f)
     local is_select,_ = string.find(sql,'^SELECT')
 
     if is_select then
-        local h = io.popen("sqlite3 -quote -separator '|' " .. M_DBFULE .. " '" .. sql .. "'")
+        local h = io.popen("sqlite3 -quote -separator '|' " .. M_DBFILE .. " '" .. sql .. "'")
         local recs = {}
         for r in h:lines() do
             local tr = M._split_rec(r)
@@ -49,7 +49,7 @@ M._runsql = function(sql,f)
         end
         return recs
     else
-        local r,_,_ = os.execute("sqlite3 -quote -separator '|' " .. M_DBFULE .. " '" .. sql .. "'")
+        local r,_,_ = os.execute("sqlite3 -quote -separator '|' " .. M_DBFILE .. " '" .. sql .. "'")
         if r == 0 then
             return true
         else    
@@ -107,7 +107,7 @@ end
     
 
 M.connect = function(f)
-    M_DBFULE = f
+    M_DBFILE = f
     M._readconfig()
 end
 
@@ -117,7 +117,7 @@ end
 
 M.new_table = function(tn,f)
     if M._sqlite_exists() and not M._table_exists(tn) then
-        use_fields = f or {}
+        local use_fields = f or {}
 
         if #f > 0 then
             local fields = {}
