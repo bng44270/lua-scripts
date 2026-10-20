@@ -1,5 +1,5 @@
 --*******************************
--- Binary Operations by byte, word, and double-word
+-- Perform binary operations on byte (8-bit), word (16-bit), and double-word (32-bit) values
 --
 -- Operations:
 --
